@@ -27,28 +27,19 @@ router.post('/page/detail', async (ctx, next) => {
 router.post('/page/update', async (ctx, next) => {
   const id = ctx.request.body.id
   const modules = ctx.request.body.modules
-  await query(UPDATE_TABLE('pagelist', { primaryKey: 'id', primaryVal: id }, { key: 'modules', val: `'${modules}'` }))
+  await query(UPDATE_TABLE('pagelist', { primaryKey: 'id', primaryVal: id }, { key: 'modules', val: `${modules}` }))
   ctx.body = {
     code: 0
   }
 })
 
 router.post('/page/add', async (ctx, next) => {
-  // console.log('ctx:::', ctx)
-  // console.log('ctx.request.body:::', ctx.request.body)
-  // console.log('ctx.params:::', ctx.params)
-  await query(INSERT_TABLE('pagelist', { key: '' }))
+  const { name } = ctx.request.body
+  const { insertId } = await query(INSERT_TABLE('pagelist', { key: 'name', val: name }))
   ctx.body = {
-    code: 0
+    code: 0,
+    data: { id: insertId }
   }
 })
-
-// router.get('/bar', async function (ctx, next) {
-//   const data = await query(QUERY_TABLE('websites'))
-//   ctx.body = {
-//     code: 0,
-//     data
-//   }
-// })
 
 module.exports = router

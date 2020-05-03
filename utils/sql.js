@@ -13,10 +13,10 @@ const QUERY_TABLE = (tableName) => `SELECT * FROM ${tableName}`
 const QUERY_TABLE_WHERE = (tableName, { key, val }) => `SELECT * FROM ${tableName} WHERE(${key}=${val})`
 
 // 插入数据
-const INSERT_TABLE = (tableName, {key, val}) => `INSERT INTO ${tableName}(${key}) VALUES (${val})`
+const INSERT_TABLE = (tableName, {key, val}) => `INSERT INTO ${tableName} (${key}) VALUES('${val}');`
 
 // 更新数据
-const UPDATE_TABLE = (tableName, {primaryKey, primaryVal}, {key, val}) => `UPDATE ${tableName} SET ${key}=${val} WHERE(${primaryKey}=${primaryVal});`
+const UPDATE_TABLE = (tableName, {primaryKey, primaryVal}, {key, val}) => `UPDATE ${tableName} SET ${key}='${val}' WHERE(${primaryKey}=${primaryVal});`
 
 // 删除数据
 const DELETE_TABLE = (tableName, {primaryKey, primaryVal}) => `DELETE FROM user WHERE(${primaryKey}=${primaryVal});`
