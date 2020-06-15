@@ -26,8 +26,8 @@ router.post('/page/detail', async (ctx, next) => {
 
 router.post('/page/update', async (ctx, next) => {
   const id = ctx.request.body.id
-  const modules = ctx.request.body.modules
-  await query(UPDATE_TABLE('pagelist', { primaryKey: 'id', primaryVal: id }, { key: 'modules', val: `${modules}` }))
+  const plugins = ctx.request.body.plugins
+  await query(UPDATE_TABLE('pagelist', { primaryKey: 'id', primaryVal: id }, { key: 'plugins', val: `${plugins}` }))
   ctx.body = {
     code: 0
   }
